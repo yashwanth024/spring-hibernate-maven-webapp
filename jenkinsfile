@@ -21,27 +21,5 @@
                 sh 'mvn test'
                 }
                 }
-        stage (package) {
-          steps {
-                node ('slave1'){
-                git 'https://github.com/avinasharuri/spring-hibernate-maven-webapp.git'
-                sh 'mvn package -Dskiptests'
-                }
-          }
-        }
-        stage (sonar_code_analysis) {
-          steps {
-		node ('sonar_slave'){
-		
-                git 'https://github.com/avinasharuri/spring-hibernate-maven-webapp.git'
-		withSonarQubeEnv('sonar') {
-         withMaven(maven: 'mvn') {
-     sh 'mvn test sonar:sonar'
-}
-		}
-          }
-        }
-        }
-}
-       }
-       
+      }
+   }
